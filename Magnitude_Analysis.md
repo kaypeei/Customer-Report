@@ -20,6 +20,17 @@ FROM gold.dim_customers
 GROUP BY country
 ORDER BY total_customers DESC;
 
+SELECT
+Country,
+COUNT(CustomerID) AS total_customers,
+-- Correct: CONCAT handles NULLs automatically
+MIN(CONCAT(FirstName, ' ', LastName)) AS FullName
+FROM Sales.Customers
+GROUP BY Country
+ORDER BY total_customers DESC;
+<img width="1194" height="686" alt="image" src="https://github.com/user-attachments/assets/ba898ca4-1741-4b66-ac1e-676cb8e6cddc" />
+
+
 -- Find total customers by gender
 SELECT
     gender,
@@ -28,6 +39,16 @@ FROM gold.dim_customers
 GROUP BY gender
 ORDER BY total_customers DESC;
 
+SELECT
+  Gender,
+  COUNT(EmployeeID) AS TotalEmployees
+FROM Sales.Employees
+GROUP BY Gender
+ORDER BY TotalEmployees DESC;
+<img width="1183" height="567" alt="image" src="https://github.com/user-attachments/assets/1832e9a1-142e-4c20-a904-8b4ac02d72a7" />
+
+
+
 -- Find total products by category
 SELECT
     category,
@@ -35,6 +56,15 @@ SELECT
 FROM gold.dim_products
 GROUP BY category
 ORDER BY total_products DESC;
+
+SELECT 
+Category,
+COUNT(DISTINCT ProductID) AS TotalProducts
+FROM Sales.Products	
+GROUP BY Category
+ORDER BY TotalProducts DESC;
+<img width="1176" height="563" alt="image" src="https://github.com/user-attachments/assets/cb8c271f-a489-4ace-998e-81c99687a438" />
+
 
 -- What is the average costs in each category?
 SELECT
